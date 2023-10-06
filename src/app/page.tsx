@@ -1,21 +1,30 @@
 "use client";
 
-import QuoteBox from "@/components/QuoteBox";
 import StandardPageWrapper from "@/components/StandardPageWrapper";
-import { Heading, Par, StyledLink } from "@/components/StyledSmalls";
+import { Heading } from "@/components/StyledSmalls";
+import BubbleMaker from "@/lib/BubbleMaker";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [numProblems, setNumProblems] = useState(0);
+  const [numMembers, setNumMembers] = useState(1);
+
   return (
     <StandardPageWrapper>
-      <Heading>heading lol</Heading>
-      <hr />
-      <Par>(some text)</Par>
-      <QuoteBox>a quote or something</QuoteBox>
-      <ul>
-        <li>
-          - <StyledLink href="https://www.google.com">google</StyledLink>
-        </li>
-      </ul>
+      <Heading>thing lol</Heading>
+      <hr /># of problems:{" "}
+      <input
+        type="number"
+        value={numProblems}
+        onChange={(e) => setNumProblems(+e.target.value)}
+      />
+      <br /># of group members:{" "}
+      <input
+        type="number"
+        value={numMembers}
+        onChange={(e) => setNumMembers(+e.target.value)}
+      />
+      <BubbleMaker problems={numProblems} members={numMembers}></BubbleMaker>
     </StandardPageWrapper>
   );
 }
