@@ -15,13 +15,15 @@ export default function Home() {
       <hr /># of problems:{" "}
       <input
         type="number"
-        value={numProblems}
+        step={1}
+        value={numProblems.toString()}
         onChange={(e) => setNumProblems(+e.target.value)}
       />
       <br /># of group members:{" "}
       <input
         type="number"
-        value={numMembers}
+        step={1}
+        value={numMembers.toString()}
         onChange={(e) => setNumMembers(+e.target.value)}
       />
       <BubbleMaker problems={numProblems} members={numMembers}></BubbleMaker>
