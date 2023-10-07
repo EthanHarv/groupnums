@@ -21,6 +21,7 @@ export default function Home() {
         type="number"
         step={1}
         min={1}
+        pattern="\d*"
         value={numProblems.toString()}
         onChange={(e) => setNumProblems(+e.target.value)}
       />
@@ -29,6 +30,7 @@ export default function Home() {
         type="number"
         step={1}
         min={1}
+        pattern="\d*"
         value={numMembers.toString()}
         onChange={(e) => setNumMembers(+e.target.value)}
       />
