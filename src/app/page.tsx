@@ -3,11 +3,15 @@
 import StandardPageWrapper from "@/components/StandardPageWrapper";
 import { Heading } from "@/components/StyledSmalls";
 import BubbleMaker from "@/lib/BubbleMaker";
+import { COLORS, SPACINGS } from "@/lib/constants";
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function Home() {
-  const [numProblems, setNumProblems] = useState(0);
+  const [numProblems, setNumProblems] = useState(1);
   const [numMembers, setNumMembers] = useState(1);
+
+  const [shuffle, setShuffle] = useState(0);
 
   return (
     <StandardPageWrapper>
@@ -16,8 +20,7 @@ export default function Home() {
       <input
         type="number"
         step={1}
-        min={0}
-        pattern="\d*"
+        min={1}
         value={numProblems.toString()}
         onChange={(e) => setNumProblems(+e.target.value)}
       />
@@ -25,12 +28,24 @@ export default function Home() {
       <input
         type="number"
         step={1}
-        min={0}
-        pattern="\d*"
+        min={1}
         value={numMembers.toString()}
         onChange={(e) => setNumMembers(+e.target.value)}
       />
-      <BubbleMaker problems={numProblems} members={numMembers}></BubbleMaker>
+      <br />
+      <StyledButton onClick={() => setShuffle(Math.random())}>
+        shuffle
+      </StyledButton>
+      <BubbleMaker
+        problems={numProblems}
+        members={numMembers}
+        seed={shuffle}
+      ></BubbleMaker>
     </StandardPageWrapper>
   );
 }
+
+const StyledButton = styled.button`
+  outline: 1px solid ${COLORS.text};
+  padding: 4px 8px;
+`;

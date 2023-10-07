@@ -7,17 +7,19 @@ import { ShuffleArr } from "./ShuffleArr";
 interface Props {
   problems: number;
   members: number;
+  seed: number;
 }
 
 const availableColors = ["#ef476f", "#ffd166", "#06d6a0", "#118ab2", "#073b4c"];
 
-export default function BubbleMaker({ problems, members }: Props) {
+export default function BubbleMaker({ problems, members, seed }: Props) {
   let remainder = problems % members;
+
   let numArray = [];
   for (let i = 0; i < problems - remainder; i++) {
     numArray.push(i);
   }
-  let shuffledArray = ShuffleArr([...numArray]);
+  let shuffledArray = ShuffleArr([...numArray], seed);
 
   let problemArray = shuffledArray.map((problem) => {
     let person = problem % members;
